@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Add Entry</title>
+</head>
+
+
+<body>
+       <div id="addEntry">
+<form>
+
+
+
+
+
+        Location:
+        <select id="selLocation" onchange="showLocationData()"></select>
+        <input type=button onclick="getLocations()" value="Get locations">
+        <br>
+
+        Rating: <input type=text value="5" id="inRating">
+        <input type=button onclick="postRating()" value="Create Rating">
+
+</form>
+
+</div>
+
+<br>
+
+<div id="addLocation">
+
+    <form>
+        Address: <input type=text value="111 Fake St" id="inAddress"> <br>
+        Latitude: <input type=text value="49.208600" id="inLat">    <br>
+        Longitude: <input type=text value="-123.123456" id="inLong">  <br>
+        City: <input type=text value="1" id="iCity"> <br>
+
+        <input type=button onclick="postLocation()" value="Create Location">
+
+    </form>
+
+
+</div>
+
+
+<script type="text/javascript" src="lib/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="script/client.js"></script>
+
+</body>
+
+</html>

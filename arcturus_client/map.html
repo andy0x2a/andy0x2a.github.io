@@ -18,8 +18,15 @@
         }
 
         #map-canvas {
-            height: 80% ;
+            height: 80%;
             overflow: hidden;
+        }
+       div{
+            padding: 5px;
+        }
+        .lowerdiv{
+            margin: 5px;
+            float:left;
         }
     </style>
     <script type="text/javascript"
@@ -37,7 +44,22 @@
             };
             var map = new google.maps.Map(document.getElementById("map-canvas"),
                     mapOptions);
+
+
             getLocation(map);
+
+//            google.maps.event.addListener(map, 'click', addMarker(event));
+
+            //##### drop a new marker on right click ######
+//        google.maps.event.addListener(map, 'click', function(event) {
+            google.maps.event.addListener(map, 'rightclick', function(event) {
+
+
+                $("#inLat").val(event.latLng.lat());
+                $("#inLong").val(event.latLng.lng());
+
+
+            });
 
         }
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -53,11 +75,46 @@
 
 
 </div>
-    <div id="map-canvas">
+<div id="map-canvas">
+
+</div>
+<div id="dataCtnr" style="height: 20%; overflow:visible;" >
+    <div id="data" style="width: 30%; overflow:visible;" class="lowerdiv">
+        Started successfully...
+    </div>
+
+    <div id="addEntry" style="width: 30%; overflow:visible;" class="lowerdiv">
+
+        <form>
+
+
+            Location:
+            <select id="selLocation" onchange="showLocationData()"></select>
+            <input type=button onclick="getLocations()" value="Get locations">
+            <br>
+
+            Rating: <input type=text value="5" id="inRating">
+            <input type=button onclick="postRating()" value="Create Rating">
+
+        </form>
 
     </div>
-<div id="data" style="height: 20%; overflow:scroll;" >
-    Started successfully...
+
+
+    <div id="addLocation" style="overflow:visible;" class="lowerdiv">
+
+        <form>
+            Address: <input type=text value="111 Fake St" id="inAddress"> <br>
+            Latitude: <input type=text value="49.208600" id="inLat"> <br>
+            Longitude: <input type=text value="-123.123456" id="inLong"> <br>
+            City: <input type=text value="1" id="iCity"> <br>
+
+            <input type=button onclick="postLocation()" value="Create Location">
+
+        </form>
+
+
     </div>
+</div>
 </body>
 </html>
